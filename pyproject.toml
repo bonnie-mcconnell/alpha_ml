@@ -1,0 +1,41 @@
+[project]
+name = "ml-alpha"
+version = "0.1.0"
+description = "ML-based alpha research system for equity return prediction"
+authors = [
+    {name = "Bonnie McConnell", email = "bonniep.mcconnell@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "yfinance (>=1.2.0,<2.0.0)",
+    "pandas (>=3.0.1,<4.0.0)",
+    "numpy (>=2.4.3,<3.0.0)",
+    "scikit-learn (>=1.5.0,<2.0.0)",
+    "shap (>=0.46.0,<1.0.0)",
+]
+
+[tool.poetry]
+packages = [{include = "ml_alpha", from = "src"}]
+
+[tool.poetry.scripts]
+ml-alpha = "ml_alpha.main:main"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::RuntimeWarning:numpy",
+]
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "mypy (>=1.0.0,<2.0.0)",
+]
